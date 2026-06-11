@@ -335,7 +335,6 @@ source_quality_score = avg(quality score per distinct source_id)
 | `*-history-ingest` | 0.42 | `draft` |
 | `wiki-update` | 0.59 | `draft` |
 | `wiki-synthesize` | `min(input_pages.base_confidence)` | `draft` |
-| `data-ingest` | 0.37 | `draft` |
 
 ### Lifecycle state machine
 
@@ -517,10 +516,9 @@ Use `wiki-status` to see the delta and get a recommendation. Use `wiki-rebuild` 
 For details on specific operations, see the companion skills:
 - **wiki-status** — Audit what's ingested, compute delta, recommend append vs rebuild
 - **wiki-rebuild** — Archive current wiki, rebuild from scratch, or restore from archive
-- **wiki-ingest** — Distill source documents into wiki pages
+- **wiki-ingest** — Distill source documents into wiki pages and raw text/chat/log data
 - **claude-history-ingest** — Ingest Claude conversation history
 - **codex-history-ingest** — Ingest Codex CLI session history
-- **data-ingest** — Ingest any raw text data
 - **wiki-query** — Answer questions against the wiki
 - **wiki-lint** — Audit and maintain wiki health
 - **wiki-setup** — Initialize a new vault

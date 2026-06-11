@@ -48,14 +48,13 @@ Skills live in `.skills/<name>/SKILL.md`. Match the user's intent to the right s
 | "set up my wiki" / "initialize" | `wiki-setup` |
 | "/wiki-history-ingest claude" / "/wiki-history-ingest codex" / "/wiki-history-ingest hermes" / "/wiki-history-ingest pi" | `wiki-history-ingest` |
 | "/ingest-url <url>" / "add this URL" / "ingest this link" / "save this page" | `ingest-url` |
-| "ingest" / "add this to the wiki" / "process these docs" | `wiki-ingest` |
+| "ingest" / "add this to the wiki" / "process these docs" / "process this export" / "ingest this data" / logs, transcripts | `wiki-ingest` |
 | "import my Claude history" / "mine my conversations" | `claude-history-ingest` |
 | "import my Codex history" / "mine my Codex sessions" | `codex-history-ingest` |
 | "import my Hermes history" / "mine my Hermes memories" / "ingest ~/.hermes" | `hermes-history-ingest` |
 | "import my OpenClaw history" / "mine my OpenClaw sessions" / "ingest ~/.openclaw" | `openclaw-history-ingest` |
 | "import my Copilot history" / "mine my Copilot sessions" / "ingest ~/.copilot" | `copilot-history-ingest` |
 | "import my Pi history" / "mine my Pi sessions" / "ingest ~/.pi" | `pi-history-ingest` |
-| "process this export" / "ingest this data" / logs, transcripts | `data-ingest` |
 | "ingest this obsidian wiki" / "ingest the obsidian-wiki project" | `obsidian-wiki-ingest` |
 | "what's the status" / "what's been ingested" / "show the delta" | `wiki-status` |
 | "wiki insights" / "hubs" / "wiki structure" | `wiki-status` (insights mode) |
