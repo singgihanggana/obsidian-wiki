@@ -347,7 +347,7 @@ Everything lives in `.skills/`. Each skill is a markdown file the agent reads wh
 | Skill                   | What it does                                      | Slash Command            |
 | ----------------------- | ------------------------------------------------- | ------------------------ |
 | `wiki-setup`            | Initialize vault structure                        | `/wiki-setup`            |
-| `wiki-ingest`           | Distill documents into wiki pages                 | `/wiki-ingest`           |
+| `wiki-ingest`           | Distill documents into wiki pages, plus chat exports, logs, transcripts | `/wiki-ingest`           |
 | `wiki-history-ingest`   | Unified history router (`claude`, `codex`, `hermes`, `pi`) | `/wiki-history-ingest <claude|codex|hermes|pi>` |
 | `claude-history-ingest` | Mine your `~/.claude` conversations and memories from Claude code and desktop  | `/claude-history-ingest` |
 | `codex-history-ingest`  | Mine your `~/.codex` sessions and rollout logs    | `/codex-history-ingest`  |
@@ -355,7 +355,6 @@ Everything lives in `.skills/`. Each skill is a markdown file the agent reads wh
 | `openclaw-history-ingest` | Mine your `~/.openclaw` MEMORY.md and sessions  | `/openclaw-history-ingest` |
 | `copilot-history-ingest` | Mine your `~/.copilot` CLI session history       | `/copilot-history-ingest` |
 | `pi-history-ingest`     | Mine your `~/.pi/agent/sessions` JSONL history    | `/pi-history-ingest` |
-| `data-ingest`           | Ingest any text — chat exports, logs, transcripts | `/data-ingest`           |
 | `ingest-url`            | Fetch and ingest a URL directly into the wiki     | `/ingest-url <url>`      |
 | `obsidian-wiki-ingest`  | Project-scoped automation wrapper for wiki-ingest | `/obsidian-wiki-ingest`  |
 | `wiki-status`           | Show what's ingested, what's pending, the delta   | `/wiki-status`           |
@@ -416,7 +415,6 @@ obsidian-wiki/
 │   ├── hermes-history-ingest/SKILL.md
 │   ├── openclaw-history-ingest/SKILL.md
 │   ├── pi-history-ingest/SKILL.md
-│   ├── data-ingest/SKILL.md
 │   ├── wiki-status/SKILL.md
 │   ├── wiki-rebuild/SKILL.md
 │   ├── wiki-query/SKILL.md

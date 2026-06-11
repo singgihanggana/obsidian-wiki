@@ -6,7 +6,7 @@ description: >
   "capture this finding", "save this bug fix", "capture this gotcha", "drop this to raw",
   "quick save to wiki", or wants to capture a non-obvious discovery mid-session without a full
   wiki-ingest run. Writes one _raw/ file per topic cluster in under 60 seconds — no subagents,
-  no QMD updates, no manifest writes. Run /wiki-ingest or /data-ingest later to promote raw
+  no QMD updates, no manifest writes. Run /wiki-ingest later to promote raw
   files to proper wiki pages.
 compatibility: Requires ~/.obsidian-wiki/config or OBSIDIAN_VAULT_PATH env var. qmd CLI optional.
 metadata:
@@ -121,7 +121,7 @@ Staged to _raw/:
   _raw/2026-05-27-swift-actor-reentrancy.md   — "Actor reentrancy causes deadlock in async forEach"
   _raw/2026-05-27-xcode-derived-data-cache.md — "Stale derived data silently breaks incremental builds"
 
-Run /wiki-ingest (or /data-ingest) to promote these to full wiki pages.
+Run /wiki-ingest to promote these to full wiki pages.
 ```
 
 If nothing was captured: "Nothing worth capturing found in this session."
