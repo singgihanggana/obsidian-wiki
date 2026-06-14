@@ -11,11 +11,11 @@
   <img width="768" height="512" alt="obisidan-wiki" src="https://github.com/user-attachments/assets/b44cf63b-3197-4fb1-8e18-dbc9a39f27a7" />
 </p>
 
-A knowledge mgmt system inspired by [gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f) published by Andrej Karpathy about maintaining a personal knowledge base with LLMs : the "LLM Wiki" pattern.
+A **digital brain** you grow with your AI agent. It remembers what you figure out, connects it to what you already know, and answers when you ask.
 
-Instead of asking an LLM the same questions over over (or doing RAG every time), you compile knowledge once into interconnected markdown files and keep them current. In this case Obsidian is the viewer and the LLM is the maintainer.
+The pattern comes from Andrej Karpathy's [LLM Wiki gist](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f): compile knowledge once into interconnected markdown files and keep them current, instead of asking an LLM the same questions over and over (or running RAG every time). Obsidian is how you see the brain. Your AI agent is how you grow it.
 
-We took that and built a framework around it. The whole thing is a set of markdown skill files that any AI coding agent (Claude Code, Cursor, Windsurf, Pi, whatever you use) can read and execute. You point it at your Obsidian vault and tell it what to do.
+We built a framework around that idea. Every skill is a markdown file that any AI coding agent (Claude Code, Cursor, Windsurf, Pi, and others) reads and runs. Point it at an Obsidian vault, tell it what to remember, and the vault becomes a second brain you own.
 
 ## Quick Start
 
@@ -200,7 +200,7 @@ cd /path/to/obsidian-wiki && pi "set up my wiki"
 
 ## How it works
 
-Every ingest runs through four stages:
+Every time you feed the brain, it runs through four stages:
 
 **1. Ingest** — The agent reads your source material directly. It handles whatever you throw at it: markdown files, PDFs (with page ranges), JSONL conversation exports, plain text logs, chat exports, meeting transcripts, and images (screenshots, whiteboard photos, diagrams — vision-capable model required). No preprocessing step, no pipeline to run. The agent reads the file the same way it reads code.
 
@@ -462,7 +462,7 @@ obsidian-wiki/
 
 ## Using from other projects
 
-The whole point is that your wiki should stay up to date as you work across different codebases. You don't want to come back to the obsidian-wiki repo every time. So `setup.sh` installs two global skills that work from any project: `wiki-update` and `wiki-query`.
+Your brain should grow as you work across codebases, not only when you open the obsidian-wiki repo. So `setup.sh` installs two global skills that reach the vault from any project: `wiki-update` and `wiki-query`.
 
 When you run `bash setup.sh`, it does the following:
 
@@ -494,15 +494,15 @@ claude
 > /wiki-query what do I know about rate limiting?
 ```
 
-`/wiki-update` reads your project, figures out what's worth keeping, and distills it into your Obsidian vault. Architecture decisions, patterns you discovered, key concepts, trade-offs you evaluated. It doesn't copy code or dump file listings. It distills the stuff you'd forget in 3 months. Next time you run it from the same project, it checks what changed since last sync (via git log) and only processes the delta.
+`/wiki-update` reads your project, figures out what's worth keeping, and writes it into the brain. Architecture decisions, patterns you discovered, key concepts, trade-offs you evaluated. It skips code and file listings and saves the stuff you'd forget in 3 months. Run it again from the same project and it checks what changed since last sync (via git log) and processes only the delta.
 
-`/wiki-query` goes the other direction. You're working on something and you want to know what your wiki says about a topic. Maybe you solved a similar problem 2 months ago in a different project and the answer is already in your vault. The agent searches the wiki, reads the relevant pages, and gives you a synthesized answer with citations.
+`/wiki-query` goes the other direction. You're mid-task and you want to know what the brain already holds on a topic. Maybe you solved the same problem 2 months ago in a different project and the answer is already there. The agent searches the vault, reads the relevant pages, and gives you a synthesized answer with citations.
 
 Both skills follow the same Karpathy pattern as everything else. If a concept page already exists in the vault, it merges into it. Everything gets cross-linked with `[[wikilinks]]`, tracked in `.manifest.json`, and logged.
 
 ## Contributing
 
-This is early. The skills work but there's a lot of room to make them smarter — better cross-referencing, smarter deduplication, handling larger vaults, new ingest sources. If you've been thinking about this problem or have a workflow that could be a skill, PRs are welcome.
+This is early. The skills work, but there's room to make the brain smarter: better cross-referencing, sharper deduplication, bigger vaults, new ingest sources. If you've been chewing on this problem or have a workflow that could be a skill, PRs are welcome.
 
 ### Adding a new skill
 
