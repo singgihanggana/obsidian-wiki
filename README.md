@@ -21,13 +21,13 @@ We built a framework around that idea. Every skill is a markdown file that any A
 
 ### Let your agent set it up
 
-The fastest path — no commands required. Open this repo in your AI agent and say:
+The fastest path — no commands required. Give your agent this repo and say:
 
 ```
-set up my wiki
+https://github.com/Ar9av/obsidian-wiki — set up my wiki
 ```
 
-The agent reads [`.skills/wiki-setup/SKILL.md`](.skills/wiki-setup/SKILL.md), asks where you want your vault to live, and initializes the full structure: directories, index, log, Obsidian config, and an optional auto-capture hook. That's it — the skill is the setup guide.
+The agent reads [`.skills/wiki-setup/SKILL.md`](.skills/wiki-setup/SKILL.md) from the repo, asks where you want your vault to live, and initializes the full structure: directories, index, log, Obsidian config, and an optional auto-capture hook. That's it — the skill is the setup guide.
 
 This works in any agent that can read files (Claude Code, Cursor, Windsurf, Codex, Gemini CLI, Kiro, and more). After setup, every wiki skill is available immediately.
 
