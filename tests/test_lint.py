@@ -129,7 +129,12 @@ def test_lint_vault_broken_links_ignores_embeds_and_normalises_md_and_escaped_pi
     # A Markdown-table cell escapes a literal pipe, which _WIKILINK_RE's own
     # alternation consumes into the alias group it does not capture.
     index = vault / "concepts" / "index.md"
-    index.write_text(index.read_text(encoding="utf-8") + "| [[beta\\|B]] | note |\n", encoding="utf-8")
+    index.write_text(
+        index.read_text(encoding="utf-8")
+        + "| [[beta\\|B]] | note |\n"
+        + "[external evidence](https://github.com/example/repo/blob/main/docs/README.md)\n",
+        encoding="utf-8",
+    )
 
     report = lint_vault(vault)
 

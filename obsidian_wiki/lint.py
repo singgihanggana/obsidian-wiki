@@ -192,6 +192,8 @@ def _parse_page(path: Path, vault: Path) -> dict[str, Any]:
         if target:
             links.append(target)
     for href in _MD_LINK_RE.findall(text):
+        if re.match(r"^(?:[A-Za-z][A-Za-z0-9+.-]*:)?//", href.strip()):
+            continue
         target = _slug(Path(href).stem)
         if target:
             links.append(target)
