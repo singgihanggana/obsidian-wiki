@@ -13,6 +13,27 @@ from obsidian_wiki.lint import _parse_page, lint_vault
 from obsidian_wiki.trust import build_trust_ledger, write_trust_ledger
 
 
+def test_lint_accepts_native_snapshot_link_to_existing_json_archive(tmp_path: Path) -> None:
+    vault = tmp_path / "vault"
+    _page(vault, "index.md", links=["alpha"])
+    _page(vault, "concepts/alpha.md")
+    archive = vault / "_raw" / "_archived" / "release-receipt.json"
+    archive.parent.mkdir(parents=True)
+    archive.write_text('{"release": "verified"}\n', encoding="utf-8")
+    result = _run_at(
+        tmp_path / "home", tmp_path,
+        "snapshots", "set", "concepts/alpha.md",
+        "--vault", str(vault), "--archive", "_raw/_archived/release-receipt.json",
+    )
+    assert result.returncode == 0, result.stderr
+    ledger = build_trust_ledger(vault, reviewed_at="2026-10-04T03:00:00+00:00")
+    write_trust_ledger(vault / "_meta" / "trust-ledger.json", ledger, vault=vault)
+    result = _run_at(tmp_path / "home", tmp_path, "lint", str(vault), "--json", "--strict-trust")
+    report = json.loads(result.stdout)
+    assert report["findings"]["broken_links"] == []
+    assert result.returncode == 0, result.stdout
+
+
 def _page(
     vault: Path,
     relpath: str,
@@ -1180,4 +1201,3 @@ def test_lint_missing_archive_wikilink_is_broken_path(tmp_path: Path) -> None:
         "page": "concepts/alpha.md",
         "target": "_raw/_archived/ghost.md",
     } in report["findings"]["broken_links"]
-

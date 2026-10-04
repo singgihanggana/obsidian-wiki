@@ -177,11 +177,12 @@ def prefer_archive_write_path(vault: Path, rel: str) -> str | None:
     return _stale_raw_archive(vault, candidate)
 
 
-def archive_wikilink_relpath(_vault: Path, inner: str) -> str | None:
-    """Normalise a wikilink inner to `_raw/_archived/…`.md if archive-shaped.
+def archive_wikilink_relpath(vault: Path, inner: str) -> str | None:
+    """Normalise an archive-shaped wikilink to its snapshot file path.
 
-    Does not require the file to exist. Returns None when the inner is not
-    under `_raw/_archived/`.
+    Preserve an existing attachment's extension; omitted Markdown extensions
+    still resolve to `.md`. Missing files remain targets for lint to report.
+    Returns None when the inner is not under `_raw/_archived/`.
     """
     value = unwrap_snapshot_value(inner)
     if not value:
@@ -192,4 +193,4 @@ def archive_wikilink_relpath(_vault: Path, inner: str) -> str | None:
     parts = path.parts
     if len(parts) < 3 or parts[0] != "_raw" or parts[1] != "_archived":
         return None
-    return value if value.lower().endswith(".md") else f"{value}.md"
+    return value if value.lower().endswith(".md") or (vault / value).is_file() else f"{value}.md"
