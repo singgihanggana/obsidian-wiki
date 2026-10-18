@@ -58,7 +58,7 @@ ALLOWED_RELATIONSHIP_TYPES = frozenset(
 
 _FIELD_RE = re.compile(r"^([A-Za-z_][\w-]*):", re.MULTILINE)
 _WIKILINK_RE = re.compile(r"\[\[([^\]|#]+?)(?:[|#][^\]]*?)?\]\]")
-_MD_LINK_RE = re.compile(r"\[.*?\]\(([^)]+\.md[^)]*)\)")
+_MD_LINK_RE = re.compile(r"\[.*?\]\((?![a-z][a-z0-9+.-]*://)([^)]+\.md(?:[?#][^)]*)?)\)", re.IGNORECASE)
 _RELATIONSHIP_LIST_FIELD_RE = re.compile(
     r"^\s*-\s*(type|target):\s*(.*?)\s*$"
 )
@@ -221,7 +221,7 @@ def _normalise_node_id(raw: str) -> str:
 _ATTACHMENT_SUFFIXES = frozenset({
     ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".svg", ".webp", ".avif",
     ".mp3", ".wav", ".m4a", ".ogg", ".flac", ".mp4", ".webm", ".mov", ".ogv",
-    ".pdf", ".canvas", ".base",
+    ".pdf", ".canvas", ".base", ".json",
 })
 
 

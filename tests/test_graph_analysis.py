@@ -122,6 +122,17 @@ class TestParseVaultGraph:
         outgoing, _ = parse_vault_graph(vault)
         assert "attention" not in outgoing.get("cited", [])
 
+    def test_external_markdown_url_is_not_a_local_edge(self, vault):
+        _page(vault, "ghost", [])
+        cited = _page(vault, "cited", [])
+        cited.write_text(
+            cited.read_text(encoding="utf-8")
+            + "[External spec](https://example.com/docs/ghost.md)\n",
+            encoding="utf-8",
+        )
+        outgoing, _ = parse_vault_graph(vault)
+        assert "ghost" not in outgoing.get("cited", [])
+
 
 # ---------------------------------------------------------------------------
 # god_nodes

@@ -55,7 +55,7 @@ from obsidian_wiki.vault import iter_md, okignore_patterns, okignored, skipped_d
 # ---------------------------------------------------------------------------
 
 _WIKILINK_RE = re.compile(r"\[\[([^\]|#]+?)(?:[|#][^\]]*?)?\]\]")
-_MD_LINK_RE = re.compile(r"\[.*?\]\(([^)]+\.md[^)]*)\)")
+_MD_LINK_RE = re.compile(r"\[.*?\]\((?![a-z][a-z0-9+.-]*://)([^)]+\.md(?:[?#][^)]*)?)\)", re.IGNORECASE)
 _TAGS_RE = re.compile(r"^tags:\s*\[([^\]]+)\]", re.MULTILINE)
 _TAGS_LIST_RE = re.compile(r"^tags:\s*\n((?:\s+-\s+\S+\n)+)", re.MULTILINE)
 

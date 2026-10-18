@@ -251,15 +251,21 @@ def test_lint_vault_broken_links_ignores_embeds_and_normalises_md_and_escaped_pi
     _page(vault, "concepts/alpha.md")
     _page(vault, "concepts/beta.md")
     (vault / "diagram.png").write_text("not a real png\n", encoding="utf-8")
+    (vault / "receipt.json").write_text("{}\n", encoding="utf-8")
     _page(
         vault,
         "concepts/index.md",
-        links=["alpha.md", "diagram.png", "ghost"],
+        links=["alpha.md", "diagram.png", "receipt.json", "ghost"],
     )
     # A Markdown-table cell escapes a literal pipe, which _WIKILINK_RE's own
     # alternation consumes into the alias group it does not capture.
     index = vault / "concepts" / "index.md"
-    index.write_text(index.read_text(encoding="utf-8") + "| [[beta\\|B]] | note |\n", encoding="utf-8")
+    index.write_text(
+        index.read_text(encoding="utf-8")
+        + "| [[beta\\|B]] | note |\n"
+        + "[External spec](https://example.com/docs/ghost.md)\n",
+        encoding="utf-8",
+    )
 
     report = lint_vault(vault)
 
